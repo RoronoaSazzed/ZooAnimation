@@ -10,6 +10,7 @@
     <title>Zoo 2.0</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -1727,7 +1728,52 @@
 </body>
 
 <script type="text/javascript">
-    $(document).ready(function () { $(".zooSection").mousewheel(function (e, o) { this.scrollLeft -= 50 * o, e.preventDefault() }) });
+    $(document).ready(function(){
+
+        var width = jQuery("#child").get(0).scrollWidth ;
+        var halfWidth = width/2 + width*0.145;
+
+        var height = jQuery("#child").get(0).scrollHeight ;
+        var halfHeight = height/4;
+
+        if( $( window ).width() > 760)
+            {
+
+                jQuery("#child").draggable({ 
+                    cursor: "move",
+                    // containment: "parent",
+                    stop: function() {
+                       if(jQuery("#child").position().left > 1) 
+                           jQuery("#child").css("left", "0px")
+
+                       if(jQuery("#child").position().top > 1) 
+                           jQuery("#child").css("top", "0px")
+
+                       if((jQuery("#child").position().left)*(-1) > halfWidth) 
+                           jQuery("#child").css("left", '-'+halfWidth+"px")
+
+                       if((jQuery("#child").position().top)*(-1) > halfHeight) 
+                           jQuery("#child").css("top", '-'+halfHeight+"px")
+                    }
+                });
+
+               $(".zooSection").css("overflow-y","hidden"); 
+            }
+            else
+            {
+                $(".zooSection").css("overflow","auto !important");
+            }
+
+            
+            $(".zooSection").scrollLeft(width/2 -width*0.145);
+            $(".zooSection").scrollTop(0);
+
+        $(window).resize(function() 
+        {
+              window.location.reload(); 
+        });
+
+    });
 </script>
 
 </html>
