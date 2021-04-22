@@ -1766,7 +1766,7 @@
 
             
             $(".zooSection").scrollLeft(width/2 -width*0.145);
-            $(".zooSection").scrollTop(0);
+            $('html, body').animate({scrollTop: '0px'}, 300);
 
         $(window).resize(function() 
         {
@@ -1774,6 +1774,7 @@
         });
 
     });
+
 </script>
 
 </html>
